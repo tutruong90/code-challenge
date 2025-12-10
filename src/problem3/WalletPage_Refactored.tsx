@@ -1,3 +1,4 @@
+// TODO: refer WalletPage.tsx for detail comments
 interface WalletBalance {
   currency: string;
   amount: number;
