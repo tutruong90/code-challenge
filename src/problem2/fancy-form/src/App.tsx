@@ -1,4 +1,5 @@
 import "./App.css";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 import MainForm from "./components/MainForm/MainForm";
 import useTokens from "./hooks/useTokens";
 
@@ -7,11 +8,7 @@ function App() {
 
   return (
     <div className="app">
-      {loading ? (
-        <h3>Loading token prices...</h3>
-      ) : (
-        <MainForm tokens={tokens} />
-      )}
+      {loading ? <LoadingScreen /> : <MainForm tokens={tokens} />}
     </div>
   );
 }

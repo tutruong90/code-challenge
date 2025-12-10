@@ -11,6 +11,7 @@ const MainForm: FC<{ tokens: Token[] }> = ({ tokens }) => {
   const [toToken, setToToken] = useState<Token>();
 
   const [inputAmount, setInputAmount] = useState("");
+  const [buttonPressed, setButtonPressed] = useState(false);
 
   const [swapStatus, setSwapStatus] = useState<"idle" | "loading" | "done">(
     "idle"
@@ -30,7 +31,7 @@ const MainForm: FC<{ tokens: Token[] }> = ({ tokens }) => {
 
   const handleSwap = () => {
     if (!inputAmount || Number(inputAmount) <= 0) {
-      alert("Amount must be > 0");
+      setButtonPressed(true);
       return;
     }
 
@@ -55,9 +56,6 @@ const MainForm: FC<{ tokens: Token[] }> = ({ tokens }) => {
     setWaveBoost((v) => v + 1);
   };
 
-  const canSwap =
-    Number(inputAmount) > 0 && fromToken && toToken && swapStatus === "idle";
-
   return (
     <div className="swap-box">
       <h2>Fancy Form</h2>
@@ -67,7 +65,11 @@ const MainForm: FC<{ tokens: Token[] }> = ({ tokens }) => {
         <div className="row row__from">
           <WaterBox boost={waveBoost} className={`water-box ${swapStatus}`} />
 
-          <div className="input-block">
+          <div
+            className={`input-block${
+              buttonPressed && !inputAmount ? " invalid" : ""
+            }`}
+          >
             <input
               className="input"
               type="number"
@@ -83,6 +85,7 @@ const MainForm: FC<{ tokens: Token[] }> = ({ tokens }) => {
             tokens={tokens}
             value={fromToken}
             onChange={setFromToken}
+            invalid={buttonPressed && !fromToken}
           />
         </div>
 
@@ -104,12 +107,17 @@ const MainForm: FC<{ tokens: Token[] }> = ({ tokens }) => {
             {/* USD Display */}
             <div className="usd-label">≈ ${outputUsd.toFixed(6)}</div>
           </div>
-          <TokenSelect tokens={tokens} value={toToken} onChange={setToToken} />
+          <TokenSelect
+            tokens={tokens}
+            value={toToken}
+            onChange={setToToken}
+            invalid={buttonPressed && !toToken}
+          />
         </div>
       </div>
 
       <LoadingButton
-        disabled={!canSwap}
+        disabled={swapStatus !== "idle"}
         className={swapStatus === "done" ? "swap-btn done" : "swap-btn"}
         onClick={handleSwap}
       >

@@ -8,7 +8,8 @@
 }
 
 .swap-box h2 {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -51,6 +52,9 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-out;
 }
 
 .usd-label {
@@ -237,4 +241,8 @@
 }
 .swap-done .label-done {
   opacity: 1;
+}
+
+.invalid {
+  border: 1px solid #a00707;
 }

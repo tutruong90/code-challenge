@@ -2,12 +2,14 @@ import "./TokenSelect.css";
 import { useMemo, useState, type FC } from "react";
 import type { Token } from "../../interfaces";
 import DEFAULT_ICON from "../../assets/default-token.svg";
+import SEARCH_ICON from "../../assets/search-icon.svg";
 
 const TokenSelect: FC<{
   tokens: Token[];
   value?: Token;
+  invalid?: boolean;
   onChange: (value?: Token) => void;
-}> = ({ tokens, value, onChange }) => {
+}> = ({ tokens, value, invalid, onChange }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -24,7 +26,10 @@ const TokenSelect: FC<{
   return (
     <>
       {/* Button */}
-      <button className="menu-toggle" onClick={() => setOpen(true)}>
+      <button
+        className={`menu-toggle${invalid ? " invalid" : ""}`}
+        onClick={() => setOpen(true)}
+      >
         <span
           className="toggle-base-bg"
           style={{
@@ -54,10 +59,19 @@ const TokenSelect: FC<{
           <div className="menu-modal" onClick={(e) => e.stopPropagation()}>
             {/* Header stays fixed */}
             <div className="menu-header">
-              <h4>Select a token</h4>
+              <div className="modal-header">
+                <h4>Select a token</h4>
+
+                <button
+                  className="modal-close-btn"
+                  onClick={() => setOpen(false)}
+                >
+                  ✕
+                </button>
+              </div>
 
               <div className="search-wrapper">
-                <span className="search-icon">🔍</span>
+                <img className="search-icon" src={SEARCH_ICON} />
                 <input
                   className="menu-search"
                   placeholder="Search token..."
