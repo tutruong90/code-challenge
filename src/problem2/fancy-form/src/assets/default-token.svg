@@ -1,0 +1,20 @@
+<svg
+  width="100"
+  height="100"
+  viewBox="0 0 100 100"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="48" fill="#2b2f36" stroke="#4b515c" stroke-width="4"/>
+
+  <!-- Inner gradient circle -->
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="100">
+      <stop offset="0%" stop-color="#55606d"/>
+      <stop offset="100%" stop-color="#3a4048"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="35" fill="url(#grad)"/>
+
+</svg>

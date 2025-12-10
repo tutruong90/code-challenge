@@ -1,0 +1,93 @@
+.water-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 0;
+}
+
+/* Base waves */
+.wave1 {
+  fill: #151b24;
+  animation: waveMove1 5s ease-in-out infinite;
+  transform-origin: 0 100%;
+}
+
+.wave2 {
+  fill: #12161c;
+  animation: waveMove2 9s ease-in-out infinite;
+  transform: scaleY(90%);
+  transform-origin: 0 100%;
+}
+
+.water-box.loading .wave1 {
+  animation-duration: 1.4s;
+  fill: #1b2430;
+}
+
+.water-box.loading .wave2 {
+  animation-duration: 3s;
+  fill: #1a2029;
+}
+
+/* GROUP scales smoothly */
+.wave-group {
+  transform-origin: 0 100%;
+  transition: transform 0.6s ease-in-out;
+  transform: scaleY(1);
+}
+
+/* WHEN DONE → collapse waves */
+.water-box.done .wave-group {
+  transform: scaleY(0);
+}
+
+/* WHEN LOADING → grow waves */
+.water-box.loading .wave-group {
+  transform: scaleY(1.25);
+}
+
+/* When user inputs something → flash color */
+.water-box.color-boost .wave1 {
+  fill: #19202d;
+  transition: fill 0.2s ease;
+}
+
+.water-box.color-boost .wave2 {
+  fill: #141920;
+  transition: fill 0.2s ease;
+}
+
+/* Smoothly return to normal */
+.water-box .wave1,
+.water-box .wave2 {
+  transition: fill 2s ease;
+}
+
+/* --- NORMAL WAVES --- */
+@keyframes waveMove1 {
+  0% {
+    d: path("M0,80 C200,60 400,110 600,70 C850,40 1050,100 1440,50 V320 H0 Z");
+  }
+  50% {
+    d: path("M0,70 C200,90 400,55 600,90 C850,120 1050,60 1440,70 V320 H0 Z");
+  }
+  100% {
+    d: path("M0,80 C200,60 400,110 600,70 C850,40 1050,100 1440,50 V320 H0 Z");
+  }
+}
+
+@keyframes waveMove2 {
+  0% {
+    d: path("M0,90 C200,75 400,100 600,80 C850,60 1050,70 1440,85 V320 H0 Z");
+  }
+  50% {
+    d: path(
+      "M0,80 C200,110 400,70 600,110 C850,140 1050,65 1440,100 V320 H0 Z"
+    );
+  }
+  100% {
+    d: path("M0,90 C200,75 400,100 600,80 C850,60 1050,70 1440,85 V320 H0 Z");
+  }
+}

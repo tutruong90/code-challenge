@@ -1,0 +1,50 @@
+body {
+  background: #0d1117;
+  color: #d0d0d0;
+  font-family: Inter, sans-serif;
+}
+
+#root {
+  margin: auto;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+}
+
+/* Scrollbar styling */
+.menu-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu-scroll::-webkit-scrollbar-thumb {
+  background: #444c56;
+  border-radius: 10px;
+}
+
+.menu-scroll::-webkit-scrollbar-thumb:hover {
+  background: #5d6a78;
+}
+
+/* Firefox scrollbar */
+.menu-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #444c56 transparent;
+}
+
+/* Remove arrows in Chrome, Safari, Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
